@@ -3,6 +3,7 @@ import { Router } from 'express'
 const router = Router()
 import crypto from 'crypto'
 import pool from '../database'
+import jwt from 'jsonwebtoken'
 
 router.get('/login', async (req: Request, res: Response) => {
     const authURL = `http://www.last.fm/api/auth/?api_key=${process.env.LASTFM_API_KEY}&cb=${process.env.REDIRECT_URI}`
@@ -33,7 +34,13 @@ const inserirBanco = await pool.query(`INSERT INTO usuarios (username, session_k
     [usuarioLogado, sessionKey])
 
     usuarioID = inserirBanco.rows[0].id
-    res.json(data)
+
+    const tokenJWT = jwt.sign(
+        { username: usuarioLogado, id: usuarioID },
+        process.env.JWT_SECRET as string,
+        { expiresIn: '7d'}
+    )
+    res.json({ tokenJWT })
 })
 
 export default router
