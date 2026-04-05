@@ -40,7 +40,7 @@ const inserirBanco = await pool.query(`INSERT INTO usuarios (username, session_k
         process.env.JWT_SECRET as string,
         { expiresIn: '7d'}
     )
-    res.json({ tokenJWT })
+    res.redirect(`http://localhost:5173/dashboard?token=${tokenJWT}`)
 })
 
 export default router

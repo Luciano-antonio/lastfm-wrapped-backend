@@ -2,7 +2,8 @@ import express, { Request, Response} from 'express'
 import jwt from 'jsonwebtoken'
 
 function porteiro(req: Request, res: Response, next: any) {
-    const token = req.headers.authorization
+    const authHeader = req.headers.authorization
+    const token = authHeader?.split(' ')[1]
     if (!token) {
         return res.status(401).json({ erro: 'Token não encontrado' })
     }
