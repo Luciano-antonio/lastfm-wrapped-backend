@@ -5,7 +5,7 @@ import musicRouter from './src/routes/music'
 
 const app = express()
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://lastfm-wrapped-frontend.onrender.com']
+    origin: ['http://localhost:5173', 'https://lastfm-wrapped-frontend.vercel.app']
 }))
 app.use(express.json())
 app.use(authRouter)
