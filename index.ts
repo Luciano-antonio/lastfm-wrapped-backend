@@ -4,7 +4,9 @@ import authRouter from './src/routes/auth'
 import musicRouter from './src/routes/music'
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:5173'
+}))
 app.use(express.json())
 app.use(authRouter)
 app.use(musicRouter)
