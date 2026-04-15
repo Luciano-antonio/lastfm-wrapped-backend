@@ -8,7 +8,7 @@ import getMusicImage from '../service/musicServices'
 
 
 router.get('/top-tracks', porteiro, async (req: Request, res: Response) => {
-    const userName = usuarioLogado
+    const userName = req.user.username
     const resposta = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getTopTracks&user=${userName}&api_key=${process.env.LASTFM_API_KEY}&format=json`)
     const data = await resposta.json()
     const filtrar = await Promise.all(data.toptracks.track.map(async (track: any) => {
@@ -23,7 +23,6 @@ router.get('/top-tracks', porteiro, async (req: Request, res: Response) => {
                 artista: track.artist.name,
                 plays: track.playcount,
                 ranking: (track as any) ['@attr'].rank,
-                mbid: track.mbid,
                 imagem
             }
     }))
@@ -37,7 +36,7 @@ router.get('/top-tracks', porteiro, async (req: Request, res: Response) => {
 })
 
 router.get('/top-artists', porteiro, async (req: Request, res: Response) => {
-    const userName = usuarioLogado
+    const userName = req.user.username
     const resposta = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getTopArtists&user=${userName}&api_key=${process.env.LASTFM_API_KEY}&format=json`)
     const data = await resposta.json()
     const filtro = await Promise.all(data.topartists.artist.map(async (artists: any) => {
@@ -63,7 +62,7 @@ router.get('/top-artists', porteiro, async (req: Request, res: Response) => {
 })
                                                                 // Rota buscando imagens via Itunes.
 router.get('/recently-played', porteiro, async (req: Request, res: Response) => {
-    const userName = usuarioLogado
+    const userName = req.user.username
     const resposta = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks&user=${userName}&api_key=${process.env.LASTFM_API_KEY}&format=json`)
     const data = await resposta.json()
     const filtro = await Promise.all(data.recenttracks.track.map(async (track: any) => {

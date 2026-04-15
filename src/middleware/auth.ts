@@ -9,6 +9,7 @@ function porteiro(req: Request, res: Response, next: any) {
     }
     try {
         const verify = jwt.verify(token, process.env.JWT_SECRET as string)
+        req.user = verify
         next()
     } catch {
         return res.status(401).json({ erro: 'token invalido'})
