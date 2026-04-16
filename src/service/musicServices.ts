@@ -1,4 +1,3 @@
-import { Pool } from 'pg'
 import pool from '../database'
     const getMusicImage = async (artist: string, track: string) => {
         
@@ -14,10 +13,10 @@ import pool from '../database'
 
         let imagens = ''
 
-    const query = encodeURIComponent(`${searchKey}`)
-    const response = await fetch(`https://itunes.apple.com/search?term=${query}&media=music&limit=1`)
-    const data = await response.json()
-    imagens = data.results[0]?.artworkUrl100 || ''
+       try { 
+        const response = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(searchKey)}&media=music&limit=1`)
+        const data = await response.json()
+        imagens = data.results[0]?.artworkUrl100 || ''
     
 
     await pool.query(
@@ -26,7 +25,10 @@ import pool from '../database'
     )
 
         return imagens
-
+  } catch {
+    return ''
+}
+    
     }
 
 export default getMusicImage
