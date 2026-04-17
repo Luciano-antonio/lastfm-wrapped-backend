@@ -4,12 +4,13 @@
     // File Layout
      "rootDir": "./",
      "outDir": "./dist",
+    "typeRoots": [ "./node_modules", "./src"],
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "commonjs",
     "target": "esnext",
-    "types": ["node"],
+    // "types": ["node"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
