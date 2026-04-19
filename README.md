@@ -1,6 +1,6 @@
 # Last.fm Wrapped
 
-o que é:
+## o que é:
 
 Last.fm Wrapped é um web app de retrospectiva de musicas. Enquanto voce ouve suas musicas favoritas o last.fm wrapped faz sua prorpia retrospectiva exclusica,
 incluindo: seu top 50 artistas mais ouvidos, seu top 50 musicas mais ouvidas e suas 50 ultimas musicas ouvidas.
@@ -16,7 +16,7 @@ incluindo: seu top 50 artistas mais ouvidos, seu top 50 musicas mais ouvidas e s
 - GET /auth/callback - finaliza o OAuth
 - GET /music/top-tracks - retorna top musicas
 - GET /music/top-artists - retorna top artistas
-- GET /music/recentlu-played - retorna músicas recentes
+- GET /music/recently-played - retorna músicas recentes
 
 ## Variaveis de ambiente necessarias
 - LASTFM_API_KEY
