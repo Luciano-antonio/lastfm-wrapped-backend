@@ -8,7 +8,7 @@ import { TrackAPI, TrackMontado, ArtistsAPI, RecentlyAPI } from '../types'
 
 
 router.get('/top-tracks', porteiro, async (req: Request, res: Response) => {
-    
+    try {
     // Pega o Username do usuario
     const userName = req.user.username
     
@@ -54,10 +54,12 @@ router.get('/top-tracks', porteiro, async (req: Request, res: Response) => {
     }))
 
     res.json(filtrar)
+    } catch {res.status(500).json({erro: "Erro ao buscar Top Tracks"})}
 })
 
 router.get('/top-artists', porteiro, async (req: Request, res: Response) => {
-    
+   try { 
+
     // Pega username do usuario
     const userName = req.user.username
 
@@ -98,10 +100,11 @@ router.get('/top-artists', porteiro, async (req: Request, res: Response) => {
     }))
 
     res.json(filtro)
+ } catch {res.status(500).json({erro: "Erro ao buscar Top Artists"})}
 })
                                                                 
 router.get('/recently-played', porteiro, async (req: Request, res: Response) => {
-    
+   try { 
     // Pega username do usuario
     const userName = req.user.username
 
@@ -131,6 +134,7 @@ router.get('/recently-played', porteiro, async (req: Request, res: Response) => 
                 }
     }))
     res.json(filtro)
+ } catch {res.status(500).json({erro: "Erro ao buscar Recently Played"})}
 })
 
 
