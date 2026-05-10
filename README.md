@@ -31,7 +31,7 @@ REDIRECT_URI=
 ```
 
 ## Demo
-https://lastfm-wrapped-frontend-7p4wi9px2-luciano-antonios-projects.vercel.app/
+https://lastfm-wrapped-frontend.vercel.app/
 
 ## Frontend
 https://github.com/Luciano-antonio/lastfm-wrapped-frontend
