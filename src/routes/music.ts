@@ -2,8 +2,8 @@ import express, { Request, Response} from 'express'
 import Router from 'express'
 const router = Router()
 import pool from '../database'
-import porteiro from '../middleware/auth'
-import getMusicImage from '../service/musicServices'
+import porteiro from '../middleware/auth.js'
+import getMusicImage from '../service/musicServices.js'
 import { TrackAPI, TrackMontado, ArtistsAPI, RecentlyAPI } from '../types'
 
 
