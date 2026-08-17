@@ -17,7 +17,7 @@ router.get('/login', async (req: Request, res: Response) => {
 
 
 router.get('/callback', async (req: Request, res: Response) => {
-   try { 
+    try { 
 
     // Recebe token do usuario
     const token = req.query.token as string
@@ -37,7 +37,7 @@ router.get('/callback', async (req: Request, res: Response) => {
     
     // Converte valido para JSON
     const data = await valido.json()
-
+    
     // Recebe session key do usuario
     const sessionKey = data.session.key
 
@@ -61,11 +61,13 @@ const inserirBanco = await pool.query(`INSERT INTO usuarios (username, session_k
         process.env.JWT_SECRET as string,
         { expiresIn: '7d'}
     )
+    
     // Redireciona para o dashboard passando a JWT pela URL
     res.redirect(`${process.env.FRONTEND_URL}/dashboard?token=${tokenJWT}`)
-} catch {
+} catch (error) {
     res.status(500).json({ erro: "Erro ao autenticar "})
 }
 })
+
 
 export default router
