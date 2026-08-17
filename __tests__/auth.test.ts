@@ -1,4 +1,5 @@
-process.env.JWT_SECRET='teste521'
+import dotenv from 'dotenv'
+dotenv.config({ path: '.env.test' })
 
 import { describe, it, vi, expect } from "vitest"
 import request from 'supertest'
